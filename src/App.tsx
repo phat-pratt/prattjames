@@ -56,7 +56,7 @@ function App() {
         <header className="App-header">
           <div id="#header-text">
             <h1>James Pratt</h1>
-            <h3> University of Wisconsin-Madison Class of 2020</h3>
+            <h3> University of Wisconsin-Madison</h3>
             <h4>B.S. Computer Science and Applied Mathematics</h4>
           </div>
         </header>
