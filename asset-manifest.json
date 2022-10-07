@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/prattjames/static/css/main.f145c79c.css",
-    "main.js": "/prattjames/static/js/main.0d709773.js",
+    "main.js": "/prattjames/static/js/main.eb3b3cd5.js",
     "static/js/787.6420ae86.chunk.js": "/prattjames/static/js/787.6420ae86.chunk.js",
     "index.html": "/prattjames/index.html",
     "main.f145c79c.css.map": "/prattjames/static/css/main.f145c79c.css.map",
-    "main.0d709773.js.map": "/prattjames/static/js/main.0d709773.js.map",
+    "main.eb3b3cd5.js.map": "/prattjames/static/js/main.eb3b3cd5.js.map",
     "787.6420ae86.chunk.js.map": "/prattjames/static/js/787.6420ae86.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f145c79c.css",
-    "static/js/main.0d709773.js"
+    "static/js/main.eb3b3cd5.js"
   ]
 }
