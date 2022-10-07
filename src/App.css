@@ -12,6 +12,21 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+:root {
+  /* cursor: none; */
+  --cursorXpos: 50vw;
+  --cursorYpos: 50vw;
+}
+
+#container::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: radial-gradient( circle 25rem at var(--cursorXpos) var(--cursorYpos)
+  , rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%);
+  z-index: 11;
+}
 
 .App-header {
   background-color: #282c34;
@@ -20,8 +35,98 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #CFDFEF;
+}
+
+#light-switch {
+  background-color: black;
+  padding: 25px;
+  border-radius: 50px;
+  color: #CFDFEF;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  z-index: 12;
+}
+
+#header-text {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header h1 {
+  font-size: calc(20px + 4vmin);
+}
+
+#Experience {
+  color: #282c34;
+  background-color: #CFDFEF;
+  padding-right: 20px;
+  padding-left: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Experience-header {
+  font-size: calc(10px + 3vmin);
+}
+
+.Experience-list {
+  display: flex;
+  padding-inline-start: 0px;
+  flex-direction: column;
+}
+
+.Experience-list-item {
+  flex-direction: row;
+  font-size: calc(10px + 1vmin);
+  display: flex;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  justify-content: space-between;
+}
+
+#box-shadow-div{
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  border-radius: 100%;
+  background-color:black;
+  box-shadow: 0 0 10px 10px black;
+  top: 49%;
+  left: 48.85%;
+}
+
+.Experience-list-item .item-left {
+  font-size: calc(10px + 1vmin);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.Experience-list-item .Experience-title {
+  display: flex;
+  text-align: start;
+}
+
+.Experience-list-item .item-right {
+  flex-direction: column;
+  text-align: end;
+  width: 40%
+}
+
+.Experience-list-item .Experience-time {
+  font-size: calc(5px + 1vmin);
+}
+
+.Experience-list-item .Experience-company {
+  text-align: end;
 }
 
 .App-link {
