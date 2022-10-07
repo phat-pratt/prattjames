@@ -28,7 +28,7 @@ const professionalExperience = [
 ];
 
 function App() {
-  const [isDarkness, setIsDarkness] = useState(false);
+  const [isDarkness, setIsDarkness] = useState(true);
 
   useEffect(() => {
     const handleWindowMouseMove = (event: MouseEvent) => {
