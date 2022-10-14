@@ -51,7 +51,7 @@ function Box(props: any) {
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry args={[2, 2, 2]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'blue'} />
+      <meshStandardMaterial color={hovered ? 'blue' : 'gray'} />
     </mesh>
   )
 }
@@ -86,7 +86,7 @@ function App() {
         <header className="App-header">
           <div style={{ position: 'absolute', width: '100%', height: '100%'}}>
             <Canvas>
-              <ambientLight />
+              <ambientLight intensity={0.1} />
               <pointLight position={[5, 5, 5]} />
               <Box position={[0, .1, 0]} />
             </Canvas>
