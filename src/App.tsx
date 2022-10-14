@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 
 import './App.css';
@@ -30,6 +30,7 @@ const professionalExperience = [
 ];
 
 function Box(props: any) {
+  const { onClickCallback } = props;
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef<any>()
   // Hold state for hovered and clicked events
@@ -40,14 +41,19 @@ function Box(props: any) {
     ref.current.rotation.x += 0.001;
     ref.current.rotation.y += 0.005;
   });
+
+  const onClick = useCallback(() => {
+    click(!clicked);
+    onClickCallback();
+  }, [onClickCallback, clicked])
   
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
       {...props}
       ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
+      scale={clicked ? 1.2 : 1}
+      onClick={onClick}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry args={[2, 2, 2]} />
@@ -88,7 +94,7 @@ function App() {
             <Canvas>
               <ambientLight intensity={0.1} />
               <pointLight position={[5, 5, 5]} />
-              <Box position={[0, .1, 0]} />
+              <Box position={[0, .1, 0]} onClickCallback={onLightSwitchFlipped}/>
             </Canvas>
           </div>
           <div id="header-text">
