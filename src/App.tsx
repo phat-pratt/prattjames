@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber'
+
 import './App.css';
 
 const professionalExperience = [
@@ -27,8 +29,35 @@ const professionalExperience = [
   }
 ];
 
+function Box(props: any) {
+  // This reference gives us direct access to the THREE.Mesh object
+  const ref = useRef<any>()
+  // Hold state for hovered and clicked events
+  const [hovered, hover] = useState(false)
+  const [clicked, click] = useState(false)
+  // Subscribe this component to the render-loop, rotate the mesh every frame
+  useFrame((state, delta) => {
+    ref.current.rotation.x += 0.001;
+    ref.current.rotation.y += 0.005;
+  });
+  
+  // Return the view, these are regular Threejs elements expressed in JSX
+  return (
+    <mesh
+      {...props}
+      ref={ref}
+      scale={clicked ? 1.5 : 1}
+      onClick={(event) => click(!clicked)}
+      onPointerOver={(event) => hover(true)}
+      onPointerOut={(event) => hover(false)}>
+      <boxGeometry args={[2, 2, 2]} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'blue'} />
+    </mesh>
+  )
+}
+
 function App() {
-  const [isDarkness, setIsDarkness] = useState(true);
+  const [isDarkness, setIsDarkness] = useState(false);
 
   useEffect(() => {
     const handleWindowMouseMove = (event: MouseEvent) => {
@@ -52,14 +81,23 @@ function App() {
 
   return (
     <div id={isDarkness ? "container" : "container-light"}>
+
       <div className="App">
         <header className="App-header">
-          <div id="#header-text">
+          <div style={{ position: 'absolute', width: '100%', height: '100%'}}>
+            <Canvas>
+              <ambientLight />
+              <pointLight position={[5, 5, 5]} />
+              <Box position={[0, .1, 0]} />
+            </Canvas>
+          </div>
+          <div id="header-text">
             <h1>James Pratt</h1>
             <h3> University of Wisconsin-Madison</h3>
             <h4>B.S. Computer Science and Applied Mathematics</h4>
           </div>
         </header>
+        
         <div id="Experience">
           <h1 className="Experience-header">Professional Experience</h1>
           <ol className="Experience-list">
@@ -88,4 +126,3 @@ function App() {
 }
 
 export default App;
- 

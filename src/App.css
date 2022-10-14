@@ -53,6 +53,8 @@
 #header-text {
   flex-direction: column;
   align-items: center;
+  z-index: 10;
+  pointer-events: none;
   justify-content: center;
 }
 
