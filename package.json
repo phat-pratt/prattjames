@@ -4,6 +4,7 @@
   "homepage": "https://phat-pratt.github.io/prattjames",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^9.34.4",
     "@react-three/fiber": "^8.8.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/three": "^0.144.0"
   }
 }

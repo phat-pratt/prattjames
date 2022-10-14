@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import {
+  CubeCamera,
+  WebGLCubeRenderTarget,
+  RGBFormat,
+  LinearMipmapLinearFilter
+} from "three";
+// import { Text } from '@react-three/drei'
 
 import './App.css';
 
@@ -30,7 +37,9 @@ const professionalExperience = [
 ];
 
 function Box(props: any) {
-  const { onClickCallback } = props;
+  const { onClickCallback } = props;  
+  const { scene, gl } = useThree();
+
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef<any>()
   // Hold state for hovered and clicked events
@@ -47,6 +56,18 @@ function Box(props: any) {
     onClickCallback();
   }, [onClickCallback, clicked])
   
+  const cubeRenderTarget = new WebGLCubeRenderTarget(256, {
+    format: RGBFormat,
+    generateMipmaps: true,
+    minFilter: LinearMipmapLinearFilter
+  });
+  const cubeCamera = new CubeCamera(1, 0, cubeRenderTarget);
+  cubeCamera.position.set(0, 0, 0);
+  scene.add(cubeCamera);
+
+  useFrame(() => cubeCamera.update(gl, scene));
+
+
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
@@ -56,7 +77,7 @@ function Box(props: any) {
       onClick={onClick}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
-      <boxGeometry args={[2, 2, 2]} />
+      <boxGeometry args={[3, 3, 3]} />
       <meshStandardMaterial color={hovered ? 'blue' : 'gray'} />
     </mesh>
   )
@@ -94,16 +115,15 @@ function App() {
             <Canvas>
               <ambientLight intensity={0.1} />
               <pointLight position={[5, 5, 5]} />
-              <Box position={[0, .1, 0]} onClickCallback={onLightSwitchFlipped}/>
+              {/* <Text position={[0,0,4]} material-toneMapped={false}>James Pratt</Text> */}
+              <Box position={[0, 0, 0]} onClickCallback={onLightSwitchFlipped}/>
             </Canvas>
           </div>
           <div id="header-text">
             <h1>James Pratt</h1>
-            <h3> University of Wisconsin-Madison</h3>
-            <h4>B.S. Computer Science and Applied Mathematics</h4>
+            <h3>Software Engineer</h3>
           </div>
         </header>
-        
         <div id="Experience">
           <h1 className="Experience-header">Professional Experience</h1>
           <ol className="Experience-list">

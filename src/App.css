@@ -30,7 +30,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: #FAF9F6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -66,6 +67,8 @@
 #Experience {
   color: #282c34;
   background-color: #CFDFEF;
+  background-color: #FAF9F6;
+
   padding-right: 20px;
   padding-left: 20px;
   min-height: 100vh;
