@@ -44,13 +44,28 @@ function Box(props: any) {
   const ref = useRef<any>()
   // Hold state for hovered and clicked events
   const [hovered, hover] = useState(false)
+  const [scaleValue, setScaleValue] = useState(1);
   const [clicked, click] = useState(false)
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
-    ref.current.rotation.x += 0.001;
-    ref.current.rotation.y += 0.005;
-  });
 
+    if(hovered) { 
+      console.log(ref.current.scale)
+      ref.current.scale.x += (scaleValue * 0.005);
+      ref.current.scale.y += (scaleValue * 0.005);
+      ref.current.scale.z += (scaleValue * 0.005);
+      if(ref.current.scale.x < 0.5 ) {
+        setScaleValue(1);
+      } 
+      if(ref.current.scale.x > 1.1) {
+        setScaleValue(-1);
+      }
+    }
+
+    ref.current.rotation.x += (hovered ? -0.005 : 0.005);
+    ref.current.rotation.y += (hovered ? -0.001 : 0.001);
+  });
+console.log(ref.current)
   const onClick = useCallback(() => {
     click(!clicked);
     onClickCallback();
@@ -73,12 +88,11 @@ function Box(props: any) {
     <mesh
       {...props}
       ref={ref}
-      scale={clicked ? 1.2 : 1}
       onClick={onClick}
       onPointerOver={(event) => hover(true)}
       onPointerOut={(event) => hover(false)}>
       <boxGeometry args={[3, 3, 3]} />
-      <meshStandardMaterial color={hovered ? 'blue' : 'gray'} />
+      <meshStandardMaterial color={hovered ? 'lightsalmon' : 'darkslategrey'} />
     </mesh>
   )
 }
