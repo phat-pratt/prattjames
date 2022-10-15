@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #FAF9F6;
 }
 
 .App-logo {
@@ -31,13 +32,14 @@
 
 .App-header {
   /* background-color: #282c34; */
-  background-color: #FAF9F6;
+  /* background-color: #FAF9F6; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #CFDFEF;
+  color: darkslategrey;
+  /* color: #CFDFEF; */
 }
 
 #light-switch {
@@ -66,8 +68,8 @@
 
 #Experience {
   color: #282c34;
-  background-color: #CFDFEF;
-  background-color: #FAF9F6;
+  /* background-color: #CFDFEF; */
+  /* background-color: #FAF9F6; */
 
   padding-right: 20px;
   padding-left: 20px;
