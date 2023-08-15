@@ -1,7 +1,7 @@
 export const professionalExperience = [
   {
     start: 'Aug. 2020',
-    title: 'Software Engineer II',
+    title: 'Senior Software Engineer',
     company: 'Action Network Inc.'
   }, 
   {
